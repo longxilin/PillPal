@@ -22,17 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'PillPal',
-      theme: new ThemeData(fontFamily: 'Montserrat Regular'),
-      home: new ListPage(title: 'PillPal'.toUpperCase()),
+      theme: new ThemeData(fontFamily: 'Montserrat'),
+      home: new ListPage(title: 'PILLPAL'),
     );
   }
 }
 
 class ListPage extends StatefulWidget {
   ListPage({Key key, this.title}) : super(key: key);
-
   final String title;
-
   @override
   _ListPageState createState() => _ListPageState();
 }
@@ -134,7 +132,12 @@ class _ListPageState extends State<ListPage> {
                 child: IconButton(
                   iconSize: 55,
                   icon: Icon(Icons.add_circle, color: const Color(0xff27BCF4)),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => addMed()),
+                    );
+                  },
                 )),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -183,6 +186,86 @@ class _ListPageState extends State<ListPage> {
       appBar: topAppBar,
       body: makeBody,
       bottomNavigationBar: makeBottom,
+    );
+  }
+}
+
+class addMed extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final makeBody = Container(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          IconButton(
+            iconSize: 22,
+            icon: Icon(Icons.clear, color: const Color(0xFFFFFFFF)),
+            alignment: Alignment.topRight,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          Padding(
+            padding: EdgeInsets.all(25.0),
+            child: Text(
+              'ADD A NEW\nMEDICATION',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Montserrat',
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: SizedBox(
+              width: 250,
+              child: FlatButton(
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.white)),
+                color: Colors.white,
+                textColor: Colors.black,
+                onPressed: () {},
+                child: Text(
+                  'BY CAMERA',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 250,
+            child: FlatButton(
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.white)),
+              color: Colors.white,
+              textColor: Colors.black,
+              onPressed: () {},
+              child: Text(
+                'BY MANUAL INPUT',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Montserrat',
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+
+    return Scaffold(
+      backgroundColor: Color(0xff27BCF4),
+      body: makeBody,
     );
   }
 }
