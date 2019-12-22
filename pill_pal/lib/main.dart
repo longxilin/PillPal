@@ -52,8 +52,8 @@ class _ListPageState extends State<ListPage> {
           child: Icon(Icons.star_border, color: Colors.black),
         ),
         title: Text(
-          drug.name,
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          drug.name .toUpperCase(),
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
         ),
         subtitle: Row(
           children: <Widget>[
