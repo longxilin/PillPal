@@ -175,8 +175,14 @@ class _ListPageState extends State<ListPage> {
       ),
       actions: <Widget>[
         IconButton(
-          icon: Icon(Icons.list, color: const Color(0xff27BCF4)),
-          onPressed: () {},
+          iconSize: 25
+          icon: Icon(Icons.add, color: const Color(0xff27BCF4)),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => addMed()),
+            );
+          },
         )
       ],
     );
