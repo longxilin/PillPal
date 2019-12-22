@@ -193,74 +193,84 @@ class _ListPageState extends State<ListPage> {
 class addMed extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final makeBody = Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IconButton(
-            iconSize: 22,
-            icon: Icon(Icons.clear, color: const Color(0xFFFFFFFF)),
+    final makeBody = Stack(
+      children:[
+        Align(
             alignment: Alignment.topRight,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          Padding(
-            padding: EdgeInsets.all(25.0),
-            child: Text(
-              'ADD A NEW\nMEDICATION',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Montserrat',
-                color: Colors.white,
+            child:
+              Padding(
+                padding: EdgeInsets.only(top:40.0, right: 20.0),
+                child: IconButton (
+                  iconSize: 25,
+                  icon: Icon(Icons.clear, color: const Color(0xFFFFFFFF)),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: SizedBox(
-              width: 250,
-              child: FlatButton(
-                shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(18.0),
-                    side: BorderSide(color: Colors.white)),
-                color: Colors.white,
-                textColor: Colors.black,
-                onPressed: () {},
+        ),
+        Align(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(25.0),
                 child: Text(
-                  'BY CAMERA',
+                  'ADD A NEW\nMEDICATION',
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Montserrat',
+                    color: Colors.white,
                   ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(
-            width: 250,
-            child: FlatButton(
-              shape: new RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.white)),
-              color: Colors.white,
-              textColor: Colors.black,
-              onPressed: () {},
-              child: Text(
-                'BY MANUAL INPUT',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Montserrat',
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: SizedBox(
+                  width: 250,
+                  child: FlatButton(
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(18.0),
+                        side: BorderSide(color: Colors.white)),
+                    color: Colors.white,
+                    textColor: Colors.black,
+                    onPressed: () {},
+                    child: Text(
+                      'BY CAMERA',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+              SizedBox(
+                width: 250,
+                child: FlatButton(
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.white)),
+                  color: Colors.white,
+                  textColor: Colors.black,
+                  onPressed: () {},
+                  child: Text(
+                    'BY MANUAL INPUT',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Montserrat',
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
 
     return Scaffold(
