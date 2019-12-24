@@ -175,7 +175,7 @@ class _ListPageState extends State<ListPage> {
       ),
       actions: <Widget>[
         IconButton(
-          iconSize: 25
+          iconSize: 25,
           icon: Icon(Icons.add, color: const Color(0xff27BCF4)),
           onPressed: () {
             Navigator.push(
@@ -210,7 +210,8 @@ class addMed extends StatelessWidget {
                   iconSize: 25,
                   icon: Icon(Icons.clear, color: const Color(0xFFFFFFFF)),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.popUntil(context, ModalRoute.withName('/')
+                    );
                   },
                 ),
               ),
@@ -235,7 +236,7 @@ class addMed extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(10.0),
                 child: SizedBox(
-                  width: 250,
+                  width: 300,
                   child: FlatButton(
                     shape: new RoundedRectangleBorder(
                         borderRadius: new BorderRadius.circular(18.0),
@@ -255,20 +256,122 @@ class addMed extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 250,
+                width: 300,
                 child: FlatButton(
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.white)),
-                  color: Colors.white,
-                  textColor: Colors.black,
-                  onPressed: () {},
+                      side: BorderSide(color: Colors.white, width: 2.0,)
+                      ),
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => StepOnePage()),
+                    );
+                  },
                   child: Text(
                     'BY MANUAL INPUT',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Montserrat',
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    return Scaffold(
+      backgroundColor: Color(0xff27BCF4),
+      body: makeBody,
+    );
+  }
+}
+
+class StepOnePage extends StatefulWidget {
+  @override
+  steponeState createState() => steponeState();
+}
+
+class steponeState extends State<StepOnePage> {
+  String dropdownValue = 'ONE';
+  @override
+  Widget build(BuildContext context) {
+    final makeBody = Stack(
+      children:[
+        Align(
+            alignment: Alignment.topRight,
+            child:
+              Padding(
+                padding: EdgeInsets.only(top:40.0, right: 20.0),
+                child: IconButton (
+                  iconSize: 25,
+                  icon: Icon(Icons.clear, color: const Color(0xFFFFFFFF)),
+                  onPressed: () {
+                    Navigator.popUntil(context, ModalRoute.withName('/')
+                    );
+                  },
+                ),
+              ),
+        ),
+        Align(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(25.0),
+                child: Text(
+                  'Step 1:\nWhat is the name'.toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              Container(
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18.0),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: ButtonTheme(
+                    alignedDropdown: true,
+                    child: DropdownButton<String>(
+                        isExpanded: true,
+                        value: dropdownValue,
+                        icon: Icon(Icons.arrow_drop_down),
+                        iconSize: 24,
+                        style: TextStyle(
+                          color: Colors.black
+                        ),
+                        underline: Container(
+                          height: 2,
+                          color: Color(0xff27BCF4),
+                        ),
+                        onChanged: (String newValue) {
+                          setState(() {
+                            dropdownValue = newValue;
+                          });
+                        },
+                        items: <String>['ONE', 'TWO','THREE','FOUR']
+                          .map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value,
+                                style: TextStyle(
+                                  fontFamily: 'Montserrat',)
+                                  ),
+                            );
+                          }).toList(),
                     ),
                   ),
                 ),
